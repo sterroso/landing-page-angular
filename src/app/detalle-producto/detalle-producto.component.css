@@ -1,0 +1,8 @@
+.detalle-producto-card {
+  max-width: 18rem;
+  padding: 0.5rem;
+}
+
+.detalle-producto-title {
+  border-bottom: thin solid #565656;
+}
