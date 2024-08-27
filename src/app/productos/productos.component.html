@@ -1,0 +1,39 @@
+<div class="tabla-productos">
+  <h2>Pasteles y postres</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Título</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [routerLink]="['/productos', '1']">
+        <th scope="row">1</th>
+        <td>Pay de Frutos del Bosque</td>
+        <td>Delicioso Pay de moras (fresa, frambuesa, arándanos y zarzamora),
+          sobre una base crujiente con mantequilla y una cubierta de pasta de
+          hojaldre en reja.</td>
+        <td>$ 350.00</td>
+      </tr>
+      <tr [routerLink]="['/productos', '2']">
+        <th scope="row">2</th>
+        <td>Pay de Piña</td>
+        <td>Delicioso Pay de dulce piña miel, sobre una base crujiente con
+          mantequilla y una cubierta de pasta de hojaldre en reja.</td>
+        <td>$ 450.00</td>
+      </tr>
+      <tr [routerLink]="['/productos', '3']">
+        <th scope="row">3</th>
+        <td>Pay de Manzana</td>
+        <td>Delicioso Pay de diversas manzanas (red delicious, verde, amarilla,
+          etc.), sobre una base crujiente con mantequilla y una cubierta de
+          pasta de hojaldre en reja.</td>
+        <td>$ 450.00</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

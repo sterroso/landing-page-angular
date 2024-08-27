@@ -1,0 +1,13 @@
+header {
+  flex-grow: 0;
+}
+
+main {
+  flex-basis: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+footer {
+  flex-grow: 0;
+}
