@@ -5,6 +5,7 @@ export interface IProducto {
   title: string;
   description?: string;
   price: number;
+  pexelsPictureId?: number;
 }
 
 const listaProductos: IProducto[] = [
@@ -13,18 +14,21 @@ const listaProductos: IProducto[] = [
     title: 'Pay de Frutos del Bosque',
     description: 'Delicioso Pay de moras (fresa, frambuesa, arándanos y zarzamora), sobre una base crujiente con mantequilla y una cubierta de pasta de hojaldre en reja.',
     price: 350.00,
+    pexelsPictureId: 2693447,
   },
   {
     id: 2,
     title: 'Pay de Piña',
     description: 'Delicioso Pay de dulce piña miel, sobre una base crujiente con mantequilla y una cubierta de pasta de hojaldre en reja.',
     price: 450.00,
+    pexelsPictureId: 2035741,
   },
   {
     id: 3,
     title: 'Pay de Manzana',
     description: 'Delicioso Pay de diversas manzanas (red delicious, verde, amarilla, etc.), sobre una base crujiente con mantequilla y una cubierta de pasta de hojaldre en reja.',
     price: 220.00,
+    pexelsPictureId: 14892629,
   },
 ];
 
