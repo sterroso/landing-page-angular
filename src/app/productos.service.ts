@@ -5,7 +5,31 @@ export interface IProducto {
   title: string;
   description?: string;
   price: number;
-}
+  pexelsPictureId?: number;
+};
+
+export interface IPexelPhotoResponse {
+  id: number;
+  width?: number;
+  height?: number;
+  url: string;
+  photographer?: string;
+  photographer_url?: string;
+  photographer_id?: string;
+  avg_color?: string;
+  src: {
+    original?: string;
+    large2x?: string;
+    large?: string;
+    medium?: string;
+    small?: string;
+    portrait?: string;
+    landscape?: string;
+    tiny?: string;
+  },
+  liked?: boolean;
+  alt?: string;
+};
 
 const listaProductos: IProducto[] = [
   {
@@ -13,18 +37,21 @@ const listaProductos: IProducto[] = [
     title: 'Pay de Frutos del Bosque',
     description: 'Delicioso Pay de moras (fresa, frambuesa, arándanos y zarzamora), sobre una base crujiente con mantequilla y una cubierta de pasta de hojaldre en reja.',
     price: 350.00,
+    pexelsPictureId: 2693447,
   },
   {
     id: 2,
     title: 'Pay de Piña',
     description: 'Delicioso Pay de dulce piña miel, sobre una base crujiente con mantequilla y una cubierta de pasta de hojaldre en reja.',
     price: 450.00,
+    pexelsPictureId: 2035741,
   },
   {
     id: 3,
     title: 'Pay de Manzana',
     description: 'Delicioso Pay de diversas manzanas (red delicious, verde, amarilla, etc.), sobre una base crujiente con mantequilla y una cubierta de pasta de hojaldre en reja.',
     price: 220.00,
+    pexelsPictureId: 14892629,
   },
 ];
 
@@ -56,15 +83,19 @@ export class ProductosService {
     return listaProductos.slice(indexStart, indexEnd);
   }
 
-  getOneById(id: number) {
-    return listaProductos.find((producto) => producto.id === id) || null;
+  getOneById(productId: number) {
+    return listaProductos.find((producto) => producto.id === productId) || null;
   }
 
-  update(id: number, data: IProducto) {
+  update(productId: number, data: IProducto) {
     throw new Error('Not implemented.');
   }
 
-  delete(id: number) {
+  delete(productId: number) {
+    throw new Error('Not implemented.');
+  }
+
+  getPexelPictureUrl(productId: number) {
     throw new Error('Not implemented.');
   }
 }
