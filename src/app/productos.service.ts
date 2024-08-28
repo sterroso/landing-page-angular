@@ -83,19 +83,19 @@ export class ProductosService {
     return listaProductos.slice(indexStart, indexEnd);
   }
 
-  getOneById(id: number) {
-    return listaProductos.find((producto) => producto.id === id) || null;
+  getOneById(productId: number) {
+    return listaProductos.find((producto) => producto.id === productId) || null;
   }
 
-  update(id: number, data: IProducto) {
+  update(productId: number, data: IProducto) {
     throw new Error('Not implemented.');
   }
 
-  delete(id: number) {
+  delete(productId: number) {
     throw new Error('Not implemented.');
   }
 
-  getPexelPicture(pictureId: number) {
+  getPexelPictureUrl(productId: number) {
     throw new Error('Not implemented.');
   }
 }
