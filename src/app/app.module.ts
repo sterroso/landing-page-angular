@@ -7,6 +7,8 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ProductosComponent } from './productos/productos.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,14 @@ import { DetalleProductoComponent } from './detalle-producto/detalle-producto.co
     ContactoComponent,
     InicioComponent,
     ProductosComponent,
-    DetalleProductoComponent
+    DetalleProductoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,          // Para formularios de tipo plantilla.
+    ReactiveFormsModule   // Para formularios reactivos.
   ],
   providers: [],
   bootstrap: [AppComponent]

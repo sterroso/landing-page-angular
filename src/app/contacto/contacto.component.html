@@ -1,1 +1,72 @@
-<p>contacto works!</p>
+<div>
+  <h3>Contacto</h3>
+
+  <form class="row g-3" [formGroup]="contactForm" (ngSubmit)="sendForm()">
+    <div class="col-md-6">
+      <label
+        for="name"
+        class="form-label"
+      >Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+        [ngClass]="{ 'is-invalid': (hasError('name', 'required') || hasError('name', 'minlength')) && (contactForm.get('name')?.touched || !contactForm.get('name')?.pristine) }"
+        required
+      />
+      <div class="text-danger" *ngIf="hasError('name', 'required') && (contactForm.get('name')?.touched || !contactForm.get('name')?.pristine)">
+        Debe proporcionar un nombre de contacto.
+      </div>
+      <div class="text-danger" *ngIf="hasError('name', 'minlength') && (contactForm.get('name')?.touched || !contactForm.get('name')?.pristine)">
+        El nombre debe contener, por lo menos, 3 caracteres.
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label
+        for="email"
+        class="form-label"
+      >Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': (hasError('email', 'required') || hasError('email', 'email')) && (contactForm.get('email')?.touched || !contactForm.get('email')?.pristine) }"
+        required
+      />
+      <div class="text-danger" *ngIf="hasError('email', 'required') && (contactForm.get('email')?.touched || !contactForm.get('email')?.pristine)">
+        Debe proporcionar un correo electrónico.
+      </div>
+      <div class="text-danger" *ngIf="hasError('email', 'email') && (contactForm.get('email')?.touched || !contactForm.get('email')?.pristine)">
+        Debe proporcionar un correo electrónico en el formato válido.
+      </div>
+    </div>
+    
+    <div class="col-12">
+      <label
+        for="message"
+        class="form-label"
+      >Mensaje</label>
+      <textarea
+        class="form-control"
+        id="message"
+        formControlName="message"
+        ngClass="{ is-invalid: true }"
+        [ngClass]="{ 'is-invalid': hasError('message', 'required') && (contactForm.get('message')?.touched || !contactForm.get('message')?.pristine)}"
+        required
+      ></textarea>
+      <div class="text-danger" *ngIf="hasError('message', 'required') && (contactForm.get('message')?.touched || !contactForm.get('message')?.pristine)">
+        ¿Cuál es el motivo de su contacto?
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button
+        type="submit"
+        class="btn btn-primary"
+      >Enviar</button>
+    </div>
+  </form>
+</div>
