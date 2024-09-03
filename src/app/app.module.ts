@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +26,8 @@ import { TipoComponent } from './contacto/tipo/tipo.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,          // Para formularios de tipo plantilla.
-    ReactiveFormsModule   // Para formularios reactivos.
+    ReactiveFormsModule,  // Para formularios reactivos.
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
