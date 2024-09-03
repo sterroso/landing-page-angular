@@ -43,6 +43,27 @@
         Debe proporcionar un correo electrónico en el formato válido.
       </div>
     </div>
+
+    <div class="col-md-6">
+      <label for="tipoUsuario" class="form-label">Tipo</label>
+      <select
+        name="tipoUsuario"
+        id="tipoUsuario"
+        class="form-control"
+        formControlName="tipo"
+        (change)="updateTipoUsuario()"
+      >
+        <option value="" selected>Elija uno ...</option>
+        <option value="individual">Individual</option>
+        <option value="corporativo">Corporativo</option>
+        <option value="educativo">Educativo</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <input-tipo-secundario [tipoUsuario]="tipoUsuario" />
+    </div>
     
     <div class="col-12">
       <label
@@ -53,7 +74,6 @@
         class="form-control"
         id="message"
         formControlName="message"
-        ngClass="{ is-invalid: true }"
         [ngClass]="{ 'is-invalid': hasError('message', 'required') && (contactForm.get('message')?.touched || !contactForm.get('message')?.pristine)}"
         required
       ></textarea>

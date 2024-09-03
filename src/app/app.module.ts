@@ -9,6 +9,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { TipoComponent } from './contacto/tipo/tipo.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginComponent } from './login/login.component';
     InicioComponent,
     ProductosComponent,
     DetalleProductoComponent,
-    LoginComponent
+    LoginComponent,
+    TipoComponent,
   ],
   imports: [
     BrowserModule,
