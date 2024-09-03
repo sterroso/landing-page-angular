@@ -15,12 +15,14 @@ export interface IContactForm {
 export class ContactoComponent implements OnInit {
   contactForm: FormGroup;
   private hardcodedName: string = 'Sergio Terroso Cabrera';
+  tipoUsuario: string = '';
 
   constructor(private form: FormBuilder) {
     this.contactForm = this.form.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      message: ['', Validators.required]
+      tipo: [''],
+      message: ['', Validators.required],
     });
   }
 
@@ -31,6 +33,10 @@ export class ContactoComponent implements OnInit {
 
   hasError(controlName: string, errorName: string): boolean {
     return this.contactForm.get(controlName)?.hasError(errorName) || false;
+  }
+
+  updateTipoUsuario(): void {
+    this.tipoUsuario = this.contactForm.get('tipo')?.value;
   }
   
   sendForm() {
