@@ -1,6 +1,14 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+const etiquetaSutipoUsuarioMap: Map<string, string> = new Map([
+  ['vacio', ''],
+  ['individual', 'Uso mas frecuente'],
+  ['corporativo', 'Nombre de la compañia'],
+  ['educativo', 'Nombre de la institucion'],
+  ['otro', 'Especifique'],
+]);
+
 @Component({
   selector: 'input-tipo-secundario',
   templateUrl: './tipo.component.html',
@@ -11,8 +19,8 @@ export class TipoComponent implements OnChanges {
 
   subformTipoUsuario: FormGroup;
 
-  // ['Uso mas frecuente', 'Nombre de la compañia', 'Nombre de la institucion', 'Especifique']
-  labelText: string = 'Uso mas frecuente'
+  // 'Uso mas frecuente', 'Nombre de la compañia', 'Nombre de la institucion', 'Especifique', ...
+  labelText: string = '';
 
   constructor(private subform: FormBuilder) {
     this.subformTipoUsuario = this.subform.group({
@@ -21,6 +29,6 @@ export class TipoComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes', changes);
+    this.labelText = etiquetaSutipoUsuarioMap.get(changes['tipoUsuario']?.currentValue) || '';
   }
 }
