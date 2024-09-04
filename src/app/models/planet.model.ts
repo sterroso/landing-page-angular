@@ -1,4 +1,6 @@
-export interface IStarWarsPlanet {
+import { IStarWarsResource, IStarWarsResourceResponse } from "./starwars.model";
+
+export interface IStarWarsPlanet extends IStarWarsResource {
   name?: string;
   rotation_period?: string;
   orbital_period?: string;
@@ -10,14 +12,8 @@ export interface IStarWarsPlanet {
   population?: string;
   residents?: string[];
   films?: string[];
-  created: string;
-  edited: string;
-  url: string;
 };
 
-export interface IStarWarsPlanetResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
+export interface IStarWarsPlanetResponse extends IStarWarsResourceResponse {
   results: IStarWarsPlanet[];
 };

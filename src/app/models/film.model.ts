@@ -1,4 +1,6 @@
-export interface IStarWarsFilm {
+import { IStarWarsResource, IStarWarsResourceResponse } from "./starwars.model";
+
+export interface IStarWarsFilm extends IStarWarsResource {
   title: string;
   episode_id?: number;
   opening_crawl?: string;
@@ -10,14 +12,8 @@ export interface IStarWarsFilm {
   starships?: string[];
   vehicles?: string[];
   species?: string[];
-  created?: string;
-  edited?: string;
-  url?: string;
 };
 
-export interface IStarWarsFilmResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
+export interface IStarWarsFilmResponse extends IStarWarsResourceResponse {
   results: IStarWarsFilm[];
 }

@@ -1,4 +1,6 @@
-export interface IStarWarsSpecie {
+import { IStarWarsResource, IStarWarsResourceResponse } from "./starwars.model";
+
+export interface IStarWarsSpecie extends IStarWarsResource {
   name?: string;
   classification?: string;
   designation?: string;
@@ -11,14 +13,8 @@ export interface IStarWarsSpecie {
   language?: string;
   people?: string[];
   films?: string[];
-  created: string;
-  edited: string;
-  url: string;
 };
 
-export interface IStarWarsSpecieResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
+export interface IStarWarsSpecieResponse extends IStarWarsResourceResponse {
   results: IStarWarsSpecie[];
 };

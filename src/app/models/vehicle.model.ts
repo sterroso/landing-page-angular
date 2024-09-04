@@ -1,4 +1,6 @@
-export interface IStarWarsVehicle {
+import { IStarWarsResource, IStarWarsResourceResponse } from "./starwars.model";
+
+export interface IStarWarsVehicle extends IStarWarsResource {
   name: string;
   model?: string;
   manufacturer?: string;
@@ -12,14 +14,8 @@ export interface IStarWarsVehicle {
   vehicle_class?: string;
   pilots?: string[];
   films?: string[];
-  created: string;
-  edited: string;
-  url: string;
 };
 
-export interface IStarWarsVehicleResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
+export interface IStarWarsVehicleResponse extends IStarWarsResourceResponse {
   results: IStarWarsVehicle[];
 };

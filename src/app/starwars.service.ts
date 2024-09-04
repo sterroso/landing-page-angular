@@ -19,15 +19,15 @@ export class StarwarsService {
 
   constructor(private client: HttpClient) { }
 
-  getMany(resource: string, search?: string) {
+  getMany(resource: string, search?: string): Observable<Object> {
     if(!this.apiPaths.includes(resource)) {
       throw new Error(`Resource '${resource}' does not exist.`);
     }
 
-    return this.client.get(`${this.apiBaseUrl}/${resource}`);
+    return this.client.get(`${this.apiBaseUrl}/${resource}/`);
   }
 
-  getOneByid(resource: string, id: number) {
+  getOneByid(resource: string, id: number): Observable<Object> {
     if (!this.apiPaths.includes(resource)) {
       throw new Error(`Resource '${resource}' does not exist.`);
     }
@@ -36,6 +36,6 @@ export class StarwarsService {
       throw new Error(`'id' parameter value (${id}) is not valid.`);
     }
 
-    return this.client.get(`${this.apiBaseUrl}/${resource}/${id}`);
+    return this.client.get(`${this.apiBaseUrl}/${resource}/${id}/`);
   }
 }

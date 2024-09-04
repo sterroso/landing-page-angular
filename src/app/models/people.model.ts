@@ -1,4 +1,6 @@
-export interface IStarWarsCharacter {
+import { IStarWarsResource, IStarWarsResourceResponse } from "./starwars.model";
+
+export interface IStarWarsCharacter extends IStarWarsResource {
   name: string;
   height?: string;
   mass?: string;
@@ -12,14 +14,8 @@ export interface IStarWarsCharacter {
   species?: string[];
   vehicles?: string[];
   starships?: string[];
-  created: string;
-  edited: string;
-  url: string;
 }
 
-export interface IStarWarsCharacterResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
+export interface IStarWarsCharacterResponse extends IStarWarsResourceResponse {
   results: IStarWarsCharacter[];
 };
