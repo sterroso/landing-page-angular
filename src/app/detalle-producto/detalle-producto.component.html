@@ -1,7 +1,14 @@
-<div class="detalle-producto-main">
+<div class="detalle-producto-main" *ngIf="producto">
   <div class="card detalle-producto-card">
-    <h3 class="card-title detalle-producto-title">{{ producto.title }}</h3>
-    <p class="card-text">{{ producto.description }}</p>
-    <p class="card-text detalle-producto-price">{{ producto.price | currency }}</p>
+    <img src="{{ producto.image }}" alt="{{ producto.title }} image" class="card-img-top">
+    <div class="card-body">
+      <h3 class="card-title detalle-producto-title">{{ producto.title }}</h3>
+      <p class="card-text">{{ producto.description }}</p>
+      <p class="card-text detalle-producto-price">{{ producto.price | currency }}</p>
+    </div>
   </div>
+</div>
+
+<div class="loading" *ngIf="!producto">
+  <p class="loading-text">Cargando producto...</p>
 </div>

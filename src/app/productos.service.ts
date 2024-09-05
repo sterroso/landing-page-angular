@@ -1,101 +1,57 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export interface IProducto {
-  id: number;
-  title: string;
-  description?: string;
-  price: number;
-  pexelsPictureId?: number;
-};
-
-export interface IPexelPhotoResponse {
-  id: number;
-  width?: number;
-  height?: number;
-  url: string;
-  photographer?: string;
-  photographer_url?: string;
-  photographer_id?: string;
-  avg_color?: string;
-  src: {
-    original?: string;
-    large2x?: string;
-    large?: string;
-    medium?: string;
-    small?: string;
-    portrait?: string;
-    landscape?: string;
-    tiny?: string;
-  },
-  liked?: boolean;
-  alt?: string;
-};
-
-const listaProductos: IProducto[] = [
-  {
-    id: 1,
-    title: 'Pay de Frutos del Bosque',
-    description: 'Delicioso Pay de moras (fresa, frambuesa, arándanos y zarzamora), sobre una base crujiente con mantequilla y una cubierta de pasta de hojaldre en reja.',
-    price: 350.00,
-    pexelsPictureId: 2693447,
-  },
-  {
-    id: 2,
-    title: 'Pay de Piña',
-    description: 'Delicioso Pay de dulce piña miel, sobre una base crujiente con mantequilla y una cubierta de pasta de hojaldre en reja.',
-    price: 450.00,
-    pexelsPictureId: 2035741,
-  },
-  {
-    id: 3,
-    title: 'Pay de Manzana',
-    description: 'Delicioso Pay de diversas manzanas (red delicious, verde, amarilla, etc.), sobre una base crujiente con mantequilla y una cubierta de pasta de hojaldre en reja.',
-    price: 220.00,
-    pexelsPictureId: 14892629,
-  },
-];
+import { IProducto } from './models/producto.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
+  private urlBase: string = 'https://fakestoreapi.com/products';
 
-  constructor() { }
+  constructor(private client: HttpClient) { }
 
-  create(product: IProducto) {
-    if (!listaProductos.find((producto) => producto.id === product.id)) {
-      listaProductos.push(product);
+  create(product: IProducto): Observable<IProducto> {
+    return this.client.post<IProducto>(`${this.urlBase}`, product);
+  }
+
+  getCategories(): Observable<string[]> {
+    return this.client.get<string[]>(`${this.urlBase}/categories`);
+  }
+
+  getAll(category?: string, limit?: number, sort?: string): Observable<IProducto[]> {
+    const params = {
+      limit: limit ? limit : null,
+      sort: sort ? sort : null,
+    };
+
+    const categoryPath = category ? `/category/${category}` : '';
+
+    let queryParams = '';
+
+    for (const [key, value] of Object.entries(params)) {
+      if (value) {
+        queryParams += queryParams.length === 0 ?
+                       `?${key}=${encodeURI(value.toString())}` :
+                       `&${key}=${encodeURI(value.toString())}`
+      }
     }
 
-    throw new Error('Ya existe un producto con ese ID');
+    const requestUrl: string = `${this.urlBase}${encodeURI(categoryPath)}${queryParams}`;
+
+    return this.client.get<IProducto[]>(requestUrl);
   }
 
-  getAll() {
-    return listaProductos;
+  getOneById(productId: number): Observable<IProducto> {
+    return this.client.get<IProducto>(`${this.urlBase}/${productId}`);
   }
 
-  getPage(page?: number, limit?: number) {
-    page = page ?? 1;
-    limit = limit ?? 10;
-    const indexStart = limit * (page - 1);
-    const indexEnd = Math.min(indexStart + limit, listaProductos.length);
-
-    return listaProductos.slice(indexStart, indexEnd);
+  update(productId: number, data: IProducto): Observable<IProducto> {
+    return this.client.put<IProducto>(`${this.urlBase}/${productId}`, data);
   }
 
-  getOneById(productId: number) {
-    return listaProductos.find((producto) => producto.id === productId) || null;
-  }
-
-  update(productId: number, data: IProducto) {
-    throw new Error('Not implemented.');
-  }
-
-  delete(productId: number) {
-    throw new Error('Not implemented.');
-  }
-
-  getPexelPictureUrl(productId: number) {
-    throw new Error('Not implemented.');
+  delete(productId: number): Observable<IProducto> {
+    return this.client.delete<IProducto>(`${this.urlBase}/${productId}`);
   }
 }

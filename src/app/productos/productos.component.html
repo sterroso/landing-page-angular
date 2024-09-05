@@ -1,21 +1,38 @@
-<div class="tabla-productos">
-  <h2>Pasteles y postres</h2>
+<div class="loading" *ngIf="!productos">
+  <p class="loading-text">Cargando productos ...</p>
+</div>
 
-  <table class="table table-striped" *ngIf="hasProducts()">
-    <thead>
+<div class="tabla-productos" *ngIf="productos">
+  <h2>Productos</h2>
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
       <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Título</th>
-        <th scope="col">Descripción</th>
+        <th scope="col">Producto</th>
         <th scope="col">Precio</th>
         <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let product of productos">
-        <th scope="row">{{ product.id }}</th>
-        <td>{{ product.title }}</td>
-        <td>{{ product.description }}</td>
+        <th scope="row">
+          <div class="productoMainCell">
+            <div class="productoImage">
+              <img src="{{ product.image }}" alt="{{ product.title }} image.">
+            </div>
+            <div class="productoTexto">
+              <div class="productoTitle">
+                {{ product.title }}
+              </div>
+              <div class="productoDescription">
+                {{ product.description }}
+              </div>
+              <div class="productoCategory">
+                <span class="badge badge-pill">{{ product.category }}</span>
+              </div>
+            </div>
+          </div>
+        </th>
         <td>{{ product.price | currency }}</td>
         <td>
           <button

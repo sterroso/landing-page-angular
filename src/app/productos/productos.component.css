@@ -1,0 +1,23 @@
+.productoMainCell {
+  display: flex;
+}
+
+.productoImage > img {
+  max-width: 64px;
+  max-height: 64px;
+  margin: 0 1rem 0 0;
+}
+
+.productoTexto {
+  display: flex;
+  flex-direction: column;
+}
+
+.productoTitle {
+  font-size: large;
+  font-weight: bold;
+}
+
+.productoDescription {
+  font-size: x-small;
+}
