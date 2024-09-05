@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IProducto, ProductosService } from '../productos.service';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { ProductosService } from '../productos.service';
+import { IProducto } from '../models/producto.model';
 
 interface IError {
   code: number,
@@ -13,26 +15,22 @@ interface IError {
   styleUrls: ['./detalle-producto.component.css']
 })
 export class DetalleProductoComponent implements OnInit {
-  producto: IProducto = {} as IProducto;
+  producto?: IProducto;
   error?: IError;
 
   constructor(private route: ActivatedRoute, private productosService: ProductosService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      const productId = Number.parseInt(params['productId'], 10);
-      if (!isNaN(productId) && productId > 0) {
-        console.log('productId', productId);
-        const producto = this.productosService.getOneById(productId);
-        if (producto) {
-          this.producto = producto;
-        } else {
-          this.error = {
-            code: 404,
-            message: `No se encontró el producto con ID ${productId}.`
+    this.route.params.subscribe(
+      {
+        next: (params: Params) => {
+          const productId = Number.parseInt(params['productId'], 10);
+          if (!isNaN(productId) && productId > 0) {
+            this.productosService.getOneById(productId).subscribe((data: IProducto) => {
+              this.producto = data;
+            });
           }
         }
-      }
     });
   }
 }
